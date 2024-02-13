@@ -1,0 +1,13 @@
+<ion-card *ngIf="product">
+  <ion-img src="{{ product.imageUrl }}"></ion-img>
+  <ion-card-header>
+    <ion-card-title>{{ product.name }}</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <p>Price: {{ product.price | currency:'USD' }}</p>
+    <p>{{ product.description }}</p>
+  </ion-card-content>
+  <div>
+    <ion-button color="primary" (click)="addToCart()">Add to Cart</ion-button>
+  </div>
+</ion-card>
