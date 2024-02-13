@@ -2,7 +2,7 @@
   <ion-card *ngFor="let cartItem of allCartItems$ | async">
     <ion-card-header>
       <ion-card-title>{{ cartItem?.product?.name }}</ion-card-title>
-      <ion-button color="danger" (click)="removeItem(cartItem?.product)">Remove</ion-button>
+      <ion-button color="danger" (click)="onRemoveButtonClicked(cartItem?.product)">Remove</ion-button>
     </ion-card-header>
     <ion-card-content>
       <p>Price: {{ cartItem?.product?.price | currency:'USD' }}</p>
@@ -12,7 +12,7 @@
     <ion-card-header>
       <ion-card-title>Total Price:</ion-card-title>
     </ion-card-header>
-    <ion-card-content>
+    <ion-card-content *ngIf="totalPrice$ | async as totalPrice">
       <p>{{ totalPrice | currency:'USD' }}</p>
     </ion-card-content>
   </ion-card>

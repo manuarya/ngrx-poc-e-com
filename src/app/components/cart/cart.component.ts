@@ -1,6 +1,5 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {Product} from "../../libs/product/api/product.model";
-import {CartItem} from "../../libs/cart/api/cart-item.model";
 import {CartFacade} from "../../libs/cart/cart.facade";
 
 
@@ -9,33 +8,19 @@ import {CartFacade} from "../../libs/cart/cart.facade";
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss'],
 })
-export class CartComponent implements OnInit {
+export class CartComponent {
 
   private cartFacade = inject(CartFacade)
 
-  cartItems: CartItem[] = [];
   allCartItems$ = this.cartFacade.allCartItems
-  totalPrice: number = 0;
+  totalPrice$ = this.cartFacade.totalPrice$
 
-  constructor() {}
-
-  ngOnInit() {
-    // Fetch or access your cart data (replace with your implementation)
-    this.cartItems = [
-      // Add products to your cart data here
-    ];
-    this.calculateTotalPrice();
+  constructor() {
   }
 
-  removeItem(product?: Product) {
-    const index = this.cartItems.findIndex(p => p?.product?.id === product?.id);
-    if (index !== -1) {
-      this.cartItems.splice(index, 1);
-      this.calculateTotalPrice();
-    }
+
+  onRemoveButtonClicked(product?: Product) {
+    this.cartFacade.removeItem(product)
   }
 
-  calculateTotalPrice() {
-    this.totalPrice = this.cartItems.reduce((acc, item) => acc + item?.product?.price, 0);
-  }
 }

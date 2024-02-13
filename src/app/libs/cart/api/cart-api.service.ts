@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {Observable, of} from 'rxjs';
 import {Product} from "../../product/api/product.model";
 import {CartItem} from "./cart-item.model";
 
@@ -10,7 +10,8 @@ export class CartApiService {
 
   private cartItems: CartItem[] = [];
 
-  constructor() { }
+  constructor() {
+  }
 
   getCartItems(): Observable<CartItem[]> {
     return of(this.cartItems);
@@ -21,7 +22,7 @@ export class CartApiService {
     if (existingItem) {
       existingItem.quantity += quantity;
     } else {
-      this.cartItems.push({ product, quantity });
+      this.cartItems.push({product, quantity});
     }
     return of(undefined);
   }
