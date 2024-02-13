@@ -66,7 +66,6 @@ export class CartApiService {
     return this.getCartItems().pipe(
       map(cartItems => {
         const cartItem = cartItems.find(item => item.product.id === productId);
-        console.log(cartItems, productId)
         return cartItem ? cartItem.quantity : 0;
       })
     );

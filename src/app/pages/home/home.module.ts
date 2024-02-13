@@ -3,13 +3,12 @@ import {CommonModule} from '@angular/common';
 import {IonicModule} from '@ionic/angular';
 import {FormsModule} from '@angular/forms';
 import {HomePage} from './home.page';
-
 import {HomePageRoutingModule} from './home-routing.module';
 import {ProductViewComponent} from "../../components/product-view/product-view.component";
 import {ProductsComponent} from "../../components/products/products.component";
 import {CartComponent} from "../../components/cart/cart.component";
 import {SexyModule} from "@qid/sexy";
-import {HttpClientModule} from "@angular/common/http";
+import {ProductModule} from "../../libs/product/product.module";
 
 
 @NgModule({
@@ -19,6 +18,7 @@ import {HttpClientModule} from "@angular/common/http";
     IonicModule,
     HomePageRoutingModule,
     SexyModule,
+    ProductModule
 
   ],
     declarations: [HomePage, ProductViewComponent, ProductsComponent, CartComponent]

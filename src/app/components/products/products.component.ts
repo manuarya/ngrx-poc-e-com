@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
 import {ProductFacade} from "../../libs/product/product.facade";
 
 @Component({
@@ -7,7 +7,7 @@ import {ProductFacade} from "../../libs/product/product.facade";
   styleUrls: ['./products.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ProductsComponent {
+export class ProductsComponent implements OnInit{
 
   @Input() category = 'All Products';
 
@@ -16,6 +16,10 @@ export class ProductsComponent {
   constructor(private productFacade: ProductFacade) {
   }
 
+
+  ngOnInit(): void {
+    this.productFacade.initProducts()
+  }
 
 
 }
