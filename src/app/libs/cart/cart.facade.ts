@@ -12,6 +12,7 @@ export class CartFacade {
 
   public allCartItems$ = this.apiService.getCartItems()
   public totalPrice$ = this.apiService.getCartTotal();
+  public totalProducts$ = this.apiService.getTotalProducts();
 
   addToCart(product: Product, quantity: number = 1) {
     return this.apiService.addToCart(product, quantity)

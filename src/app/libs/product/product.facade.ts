@@ -12,6 +12,8 @@ export class ProductFacade {
   private cartFacade = inject(CartFacade)
 
   public allProducts$ = this.productApiService.getProducts();
+  jeweleryProducts$ = this.productApiService.getProducts('jewelery');
+  productsMethod = this.productApiService.getProducts;
 
 
   addToCart(product: Product, quantity: number = 1) {

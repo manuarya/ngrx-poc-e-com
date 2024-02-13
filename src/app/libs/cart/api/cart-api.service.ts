@@ -34,7 +34,7 @@ export class CartApiService {
     const index = this.cartItems.findIndex(item => item?.product?.id === product?.id);
     if (index !== -1) {
       this.cartItems[index].quantity += changeInQuantity;
-      if(this.cartItems[index].quantity <= 1) {
+      if(this.cartItems[index].quantity <= 0) {
         this.removeFromCart(product?.id)
       }
     } else {
@@ -69,6 +69,12 @@ export class CartApiService {
         console.log(cartItems, productId)
         return cartItem ? cartItem.quantity : 0;
       })
+    );
+  }
+
+  getTotalProducts() {
+    return this.cartItemsSubject.pipe(
+      map(cartItems => cartItems.reduce((acc, item) => acc + item.quantity, 0) || 0)
     );
   }
 }

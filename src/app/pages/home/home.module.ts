@@ -9,6 +9,7 @@ import {ProductViewComponent} from "../../components/product-view/product-view.c
 import {ProductsComponent} from "../../components/products/products.component";
 import {CartComponent} from "../../components/cart/cart.component";
 import {SexyModule} from "@qid/sexy";
+import {HttpClientModule} from "@angular/common/http";
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import {SexyModule} from "@qid/sexy";
     FormsModule,
     IonicModule,
     HomePageRoutingModule,
-    SexyModule
+    SexyModule,
+
   ],
     declarations: [HomePage, ProductViewComponent, ProductsComponent, CartComponent]
 })

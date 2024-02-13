@@ -1,16 +1,17 @@
 <ion-card *ngIf="product">
+  <img [src]="product?.imageUrl" loading="lazy">
   <ion-card-header>
-    <ion-card-title>{{ product.name }}</ion-card-title>
+    <ion-card-title class="title">{{ product.name }}</ion-card-title>
   </ion-card-header>
   <ion-card-content>
     <p>Price: {{ product.price | currency:'USD' }}</p>
-    <p>{{ product.description }}</p>
+    <p class="description">{{ product.description }}</p>
   </ion-card-content>
   <div>
 
   </div>
-  <ion-item>
-    <ion-buttons>
+  <ion-item lines="none">
+    <ion-buttons *ngIf="quantity$|async; else addButton">
       <ion-button color="primary" (click)="updateQuantity(-1)">
         <ion-icon name="remove-outline"></ion-icon>
       </ion-button>
@@ -19,10 +20,19 @@
         <ion-icon name="add-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-buttons slot="end">
+    <ion-buttons slot="end" *ngIf="quantity$ | async">
       <ion-button color="danger" (click)="removeFromCart()">
         <ion-icon name="trash"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-item>
 </ion-card>
+
+<ng-template #addButton>
+  <ion-buttons>
+    <ion-button color="primary" (click)="addToCart()">
+      <ion-icon name="cart-outline"></ion-icon>
+      Add to Cart
+    </ion-button>
+  </ion-buttons>
+</ng-template>

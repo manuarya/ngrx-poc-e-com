@@ -1,4 +1,4 @@
-import {Component, inject, Input, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject, Input, OnInit} from '@angular/core';
 import {Product} from "../../libs/product/api/product.model";
 import {ProductFacade} from "../../libs/product/product.facade";
 
@@ -6,6 +6,7 @@ import {ProductFacade} from "../../libs/product/product.facade";
   selector: 'app-product-view',
   templateUrl: './product-view.component.html',
   styleUrls: ['./product-view.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductViewComponent implements OnInit{
 

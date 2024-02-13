@@ -13,6 +13,7 @@
     "@ionic/angular": "^7.0.0",
     "@qid/sexy": "^1.0.2",
     "ionicons": "^7.0.0",
+    "ng-lazyload-image": "^9.1.3",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.2",
@@ -73,7 +74,7 @@
       },
       {
         "file": "angular.json",
-        "hash": "11992048326398934745"
+        "hash": "15079924692078699288"
       },
       {
         "file": "ionic.config.json",
@@ -89,15 +90,15 @@
       },
       {
         "file": "package-lock.json",
-        "hash": "579487469599465299"
+        "hash": "4781702076933596192"
       },
       {
         "file": "package.json",
-        "hash": "7861205435431810961"
+        "hash": "9611077153729575238"
       },
       {
         "file": "src/app/app-routing.module.ts",
-        "hash": "7092203362848417435"
+        "hash": "11012092282284981067"
       },
       {
         "file": "src/app/app.component.html",
@@ -108,40 +109,92 @@
         "hash": "3244421341483603138"
       },
       {
-        "file": "src/app/app.component.spec.ts",
-        "hash": "16655258543879266906"
-      },
-      {
         "file": "src/app/app.component.ts",
         "hash": "3298285516620454244"
       },
       {
         "file": "src/app/app.module.ts",
-        "hash": "5073765293049625490"
+        "hash": "14243122223018562208"
       },
       {
-        "file": "src/app/home/home-routing.module.ts",
+        "file": "src/app/components/cart/cart.component.html",
+        "hash": "7945972491334518300"
+      },
+      {
+        "file": "src/app/components/cart/cart.component.scss",
+        "hash": "3367972025901415580"
+      },
+      {
+        "file": "src/app/components/cart/cart.component.ts",
+        "hash": "3658983465875237822"
+      },
+      {
+        "file": "src/app/components/product-view/product-view.component.html",
+        "hash": "17218189902230464389"
+      },
+      {
+        "file": "src/app/components/product-view/product-view.component.scss",
+        "hash": "14565563612164585261"
+      },
+      {
+        "file": "src/app/components/product-view/product-view.component.ts",
+        "hash": "6492248078685252124"
+      },
+      {
+        "file": "src/app/components/products/products.component.html",
+        "hash": "1323205587667516922"
+      },
+      {
+        "file": "src/app/components/products/products.component.scss",
+        "hash": "12248941707187169764"
+      },
+      {
+        "file": "src/app/components/products/products.component.ts",
+        "hash": "925270143705193167"
+      },
+      {
+        "file": "src/app/libs/cart/api/cart-api.service.ts",
+        "hash": "9327014232489967134"
+      },
+      {
+        "file": "src/app/libs/cart/api/cart-item.model.ts",
+        "hash": "3382797365892909172"
+      },
+      {
+        "file": "src/app/libs/cart/cart.facade.ts",
+        "hash": "3734602448275854538"
+      },
+      {
+        "file": "src/app/libs/product/api/product-api.service.ts",
+        "hash": "17849891224654476421"
+      },
+      {
+        "file": "src/app/libs/product/api/product.model.ts",
+        "hash": "15697588151370094001"
+      },
+      {
+        "file": "src/app/libs/product/product.facade.ts",
+        "hash": "12432419228772262297"
+      },
+      {
+        "file": "src/app/pages/home/home-routing.module.ts",
         "hash": "15640276891962985461"
       },
       {
-        "file": "src/app/home/home.module.ts",
-        "hash": "11132792541070780270"
+        "file": "src/app/pages/home/home.module.ts",
+        "hash": "4873601494526175289"
       },
       {
-        "file": "src/app/home/home.page.html",
-        "hash": "3668328913015384273"
+        "file": "src/app/pages/home/home.page.html",
+        "hash": "4474431262837252345"
       },
       {
-        "file": "src/app/home/home.page.scss",
+        "file": "src/app/pages/home/home.page.scss",
         "hash": "14250411118003398491"
       },
       {
-        "file": "src/app/home/home.page.spec.ts",
-        "hash": "17001972042763736139"
-      },
-      {
-        "file": "src/app/home/home.page.ts",
-        "hash": "1571215977137710084"
+        "file": "src/app/pages/home/home.page.ts",
+        "hash": "4672830762368757955"
       },
       {
         "file": "src/assets/icon/favicon.png",
@@ -193,7 +246,7 @@
       },
       {
         "file": "tsconfig.json",
-        "hash": "9300148005582941852"
+        "hash": "13063755439071719758"
       },
       {
         "file": "tsconfig.spec.json",

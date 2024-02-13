@@ -24,6 +24,7 @@
     "@ionic/angular": "^7.0.0",
     "@qid/sexy": "^1.0.2",
     "ionicons": "^7.0.0",
+    "ng-lazyload-image": "^9.1.3",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.2"

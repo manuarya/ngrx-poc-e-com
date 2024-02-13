@@ -1,3 +1,7 @@
-<app-product-view *ngFor="let product of products$ | async" [product]="product"
-
-></app-product-view>
+<ion-list-header class="ion-margin">
+  {{category | titlecase}}
+</ion-list-header>
+<div class="container">
+  <app-product-view *ngFor="let product of products$ | async" [product]="product">
+  </app-product-view>
+</div>

@@ -1,10 +1,23 @@
-import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { Product } from './product.model'; // define your Product model
+import {Injectable} from '@angular/core';
+import {map, Observable, of} from 'rxjs';
+import {Product} from './product.model';
+import {HttpClient} from "@angular/common/http"; // define your Product model
 
 const productsData: Product[] = [
-  { id: 1, name: 'Product 1', price: 29.99, description: 'A cool product' },
-  { id: 2, name: 'Product 2', price: 49.99, description: 'Another cool product' },
+  {
+    id: 1,
+    name: 'Product 1',
+    price: 29.99,
+    description: 'A cool product',
+    imageUrl: 'https://www.digitaltrends.com/wp-content/uploads/2022/08/iPhone-SE-2022-Starlight-Back-in-Hand.jpg?resize=625%2C417&p=1'
+  },
+  {
+    id: 2,
+    name: 'Product 2',
+    price: 49.99,
+    description: 'Another cool product',
+    imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgVkFle0SZjuNH2wORYyOyJdSrlESccIG0jQ&usqp=CAU'
+  },
   // Add more dummy products here
 ];
 
@@ -13,45 +26,24 @@ const productsData: Product[] = [
 })
 export class ProductApiService {
 
-  constructor() { }
-
-  getProducts(): Observable<Product[]> {
-    return of(productsData);
+  constructor(private http: HttpClient) {
   }
 
-  getProductById(id: number): Observable<Product | null> {
-    const product = productsData.find(p => p.id === id);
-    return of(product ? product : null);
-  }
-
-  addProduct(product: Product): Observable<Product> {
-    product.id = this.getNextId(); // simulate auto-generated ID
-    productsData.push(product);
-    return of(product);
-  }
-
-  updateProduct(product: Product): Observable<Product> {
-    const index = productsData.findIndex(p => p.id === product.id);
-    if (index !== -1) {
-      productsData[index] = product;
-      return of(product);
-    } else {
-      throw new Error('Product not found');
+  getProducts(category = ''): Observable<Product[]> {
+    let url = 'https://fakestoreapi.com/products';
+    if (category) {
+      url = 'https://fakestoreapi.com/products'
     }
+
+    return this.http.get(url).pipe(
+      map((products: any[]) => products.map(p => ({
+        id: p.id,
+        name: p.title,
+        price: p.price,
+        description: p.description,
+        imageUrl: p.image
+      }) as Product)));
   }
 
-  deleteProduct(id: number): Observable<void> {
-    const index = productsData.findIndex(p => p.id === id);
-    if (index !== -1) {
-      productsData.splice(index, 1);
-      return of(undefined);
-    } else {
-      throw new Error('Product not found');
-    }
-  }
 
-  private getNextId(): number {
-    const maxId = Math.max(...productsData.map(p => p.id));
-    return maxId + 1;
-  }
 }

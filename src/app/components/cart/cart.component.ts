@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {Product} from "../../libs/product/api/product.model";
 import {CartFacade} from "../../libs/cart/cart.facade";
 
@@ -7,6 +7,7 @@ import {CartFacade} from "../../libs/cart/cart.facade";
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CartComponent {
 
@@ -25,4 +26,7 @@ export class CartComponent {
 
   }
 
+  updateQuantity(cartItem: any, number: number) {
+    this.cartFacade.updateQuantity(cartItem.product, number)
+  }
 }

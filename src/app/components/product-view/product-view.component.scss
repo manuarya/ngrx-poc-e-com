@@ -1,0 +1,33 @@
+ion-item{
+  --ion-item-background: transparent;
+}
+
+img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.description {
+  //it should show at max 2 lines then ellipse
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+ion-card {
+  height: 400px;
+  padding: 0px;
+  margin: 0px;
+}
+
+.title {
+  font-size: 1rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
