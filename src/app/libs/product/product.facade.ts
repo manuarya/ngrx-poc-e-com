@@ -18,4 +18,15 @@ export class ProductFacade {
     return this.cartFacade.addToCart(product, quantity)
   }
 
+  getQuantity(id: number | undefined) {
+    return this.cartFacade?.getQuantity(id);
+  }
+
+  removeFromCart(product: Product) {
+    this.cartFacade.removeItem(product)
+  }
+
+  updateQuantity(product: Product, quantity: number) {
+    this.cartFacade.updateQuantity(product, quantity)
+  }
 }
