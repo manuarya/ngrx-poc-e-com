@@ -1,5 +1,5 @@
 <ion-content>
-  <ion-card *ngFor="let cartItem of cartItems">
+  <ion-card *ngFor="let cartItem of allCartItems$ | async">
     <ion-card-header>
       <ion-card-title>{{ cartItem?.product?.name }}</ion-card-title>
       <ion-button color="danger" (click)="removeItem(cartItem?.product)">Remove</ion-button>

@@ -8,6 +8,7 @@ import {HomePageRoutingModule} from './home-routing.module';
 import {ProductViewComponent} from "../../components/product-view/product-view.component";
 import {ProductsComponent} from "../../components/products/products.component";
 import {CartComponent} from "../../components/cart/cart.component";
+import {SexyModule} from "@qid/sexy";
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import {CartComponent} from "../../components/cart/cart.component";
     CommonModule,
     FormsModule,
     IonicModule,
-    HomePageRoutingModule
+    HomePageRoutingModule,
+    SexyModule
   ],
     declarations: [HomePage, ProductViewComponent, ProductsComponent, CartComponent]
 })

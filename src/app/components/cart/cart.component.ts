@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {Product} from "../../libs/product/api/product.model";
 import {CartItem} from "../../libs/cart/api/cart-item.model";
+import {CartFacade} from "../../libs/cart/cart.facade";
 
 
 @Component({
@@ -10,7 +11,10 @@ import {CartItem} from "../../libs/cart/api/cart-item.model";
 })
 export class CartComponent implements OnInit {
 
+  private cartFacade = inject(CartFacade)
+
   cartItems: CartItem[] = [];
+  allCartItems$ = this.cartFacade.allCartItems
   totalPrice: number = 0;
 
   constructor() {}
