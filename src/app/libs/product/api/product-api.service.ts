@@ -29,7 +29,7 @@ export class ProductApiService {
   constructor(private http: HttpClient) {
   }
 
-  getProducts(category = ''): Observable<Product[]> {
+  fetch(category = ''): Observable<Product[]> {
     let url = 'https://fakestoreapi.com/products';
     if (category) {
       url = 'https://fakestoreapi.com/products'
