@@ -1,5 +1,4 @@
 <ion-card *ngIf="product">
-  <ion-img src="{{ product.imageUrl }}"></ion-img>
   <ion-card-header>
     <ion-card-title>{{ product.name }}</ion-card-title>
   </ion-card-header>
@@ -8,13 +7,22 @@
     <p>{{ product.description }}</p>
   </ion-card-content>
   <div>
-    <ion-button color="primary" (click)="updateQuantity(-1)">-</ion-button>
-    <span>{{ quantity$ | async}}</span>
-    <ion-button color="primary" (click)="updateQuantity(1)">+</ion-button>
+
   </div>
-  <div>
-    <ion-button color="danger" (click)="removeFromCart()">
-      <ion-icon name="trash"></ion-icon>
-    </ion-button>
-  </div>
+  <ion-item>
+    <ion-buttons>
+      <ion-button color="primary" (click)="updateQuantity(-1)">
+        <ion-icon name="remove-outline"></ion-icon>
+      </ion-button>
+      <span>{{ quantity$ | async}}</span>
+      <ion-button color="primary" (click)="updateQuantity(1)">
+        <ion-icon name="add-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button color="danger" (click)="removeFromCart()">
+        <ion-icon name="trash"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-item>
 </ion-card>

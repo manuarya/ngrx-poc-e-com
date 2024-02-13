@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {map, Observable, of} from 'rxjs';
+import {BehaviorSubject, map, Observable, of} from 'rxjs';
 import {Product} from "../../product/api/product.model";
 import {CartItem} from "./cart-item.model";
 
@@ -8,13 +8,15 @@ import {CartItem} from "./cart-item.model";
 })
 export class CartApiService {
 
+  private cartItemsSubject: BehaviorSubject<CartItem[]> = new BehaviorSubject<CartItem[]>([]);
   private cartItems: CartItem[] = [];
 
   constructor() {
+    this.cartItemsSubject.next(this.cartItems);
   }
 
   getCartItems(): Observable<CartItem[]> {
-    return of(this.cartItems);
+    return this.cartItemsSubject.asObservable();
   }
 
   addToCart(product: Product, quantity: number): Observable<void> {
@@ -24,6 +26,7 @@ export class CartApiService {
     } else {
       this.cartItems.push({product, quantity});
     }
+    this.cartItemsSubject.next(this.cartItems);
     return of(undefined);
   }
 
@@ -38,6 +41,7 @@ export class CartApiService {
       if(changeInQuantity > 0)
         this.addToCart(product, 1)
     }
+    this.cartItemsSubject.next(this.cartItems);
     return of(undefined);
   }
 
@@ -48,19 +52,23 @@ export class CartApiService {
     } else {
       // throw new Error('Product not found in cart');
     }
+    this.cartItemsSubject.next(this.cartItems);
     return of(undefined);
   }
 
   getCartTotal(): Observable<number> {
-    return of(
-      this.cartItems.reduce((acc, item) => acc + item?.product?.price * item.quantity, 0)
+    return this.cartItemsSubject.pipe(
+      map(cartItems => cartItems.reduce((acc, item) => acc + item.product.price * item.quantity, 0) || 0)
     );
   }
 
-  getQuantityOfProductInCart(productId): Observable<number> {
-    // return of(this.cartItems.find(item=>item.product.id == productId)?.quantity || 0)
+  getQuantityOfProductInCart(productId: number): Observable<number> {
     return this.getCartItems().pipe(
-      map(cartItems => cartItems.find(item => item.product.id === productId)?.quantity || 0)
+      map(cartItems => {
+        const cartItem = cartItems.find(item => item.product.id === productId);
+        console.log(cartItems, productId)
+        return cartItem ? cartItem.quantity : 0;
+      })
     );
   }
 }

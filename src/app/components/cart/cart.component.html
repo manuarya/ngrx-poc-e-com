@@ -15,8 +15,8 @@
     <ion-card-header>
       <ion-card-title>Total Price:</ion-card-title>
     </ion-card-header>
-    <ion-card-content >
-      <p>{{ totalPrice$ | async }}</p>
+    <ion-card-content *ngIf="totalPrice$ | async as totalprice">
+      <p>{{ totalprice | currency:'USD' }}</p>
     </ion-card-content>
   </ion-card>
   <ion-button size="full" color="primary">Checkout</ion-button>

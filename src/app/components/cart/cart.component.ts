@@ -21,6 +21,8 @@ export class CartComponent {
 
   onRemoveButtonClicked(product?: Product) {
     this.cartFacade.removeItem(product)
+
+
   }
 
 }

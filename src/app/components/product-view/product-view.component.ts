@@ -13,7 +13,7 @@ export class ProductViewComponent implements OnInit{
 
   private productFacade = inject(ProductFacade);
 
-  quantity$ = this.productFacade?.getQuantity(this.product?.id)
+  quantity$;
   constructor() {
   }
 
@@ -37,5 +37,6 @@ export class ProductViewComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    this.quantity$= this.productFacade?.getQuantity(this.product?.id)
   }
 }
