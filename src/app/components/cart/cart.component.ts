@@ -12,7 +12,7 @@ export class CartComponent {
 
   private cartFacade = inject(CartFacade)
 
-  allCartItems$ = this.cartFacade.allCartItems
+  allCartItems$ = this.cartFacade.allCartItems$
   totalPrice$ = this.cartFacade.totalPrice$
 
   constructor() {

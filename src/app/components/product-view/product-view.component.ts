@@ -1,4 +1,4 @@
-import {Component, inject, Input} from '@angular/core';
+import {Component, inject, Input, OnInit} from '@angular/core';
 import {Product} from "../../libs/product/api/product.model";
 import {ProductFacade} from "../../libs/product/product.facade";
 
@@ -7,12 +7,13 @@ import {ProductFacade} from "../../libs/product/product.facade";
   templateUrl: './product-view.component.html',
   styleUrls: ['./product-view.component.scss'],
 })
-export class ProductViewComponent {
+export class ProductViewComponent implements OnInit{
 
   @Input() product?: Product; // Receive product data as input
 
   private productFacade = inject(ProductFacade);
 
+  quantity$ = this.productFacade?.getQuantity(this.product?.id)
   constructor() {
   }
 
@@ -23,4 +24,18 @@ export class ProductViewComponent {
 
   }
 
+  removeFromCart() {
+    if(this.product) {
+      this.productFacade.removeFromCart(this.product)
+    }
+  }
+
+  updateQuantity(quantity: number) {
+    if(this.product) {
+      this.productFacade.updateQuantity(this.product, quantity)
+    }
+  }
+
+  ngOnInit(): void {
+  }
 }
