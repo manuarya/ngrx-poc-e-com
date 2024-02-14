@@ -6,12 +6,10 @@ export const stateFeatureKey = 'product';
 
 export interface ProductState{
   allProducts : Product[]
-  isLoaded : boolean
 }
 
 const initialProductState : ProductState = {
   allProducts : [],
-  isLoaded : false
 }
 
 export const reducers = createReducer(

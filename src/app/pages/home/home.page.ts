@@ -1,6 +1,4 @@
-import { Component } from '@angular/core';
-import {ProductApiService} from "../../libs/product/api/product-api.service";
-import {Product} from "../../libs/product/api/product.model";
+import {Component} from '@angular/core';
 import {CartFacade} from "../../libs/cart/cart.facade";
 
 @Component({
@@ -10,9 +8,6 @@ import {CartFacade} from "../../libs/cart/cart.facade";
 })
 export class HomePage {
 
-
-  constructor(public cartFascade: CartFacade) {}
-
-
+  constructor(public cartFacade: CartFacade) {}
 
 }

@@ -3,8 +3,7 @@ import {Product} from "./api/product.model";
 import {ProductApiService} from "./api/product-api.service";
 import {CartFacade} from "../cart/cart.facade";
 import {Store} from "@ngrx/store";
-import {selectAllProducts, selectIsLoaded} from "./state/product.selectors";
-import {firstValueFrom} from "rxjs";
+import {selectAllProducts} from "./state/product.selectors";
 import {fetchProducts} from "./state/product.actions";
 
 @Injectable({
@@ -30,7 +29,7 @@ export class ProductFacade {
   }
 
   getQuantity(id: number | undefined) {
-    return this.cartFacade?.getQuantity(id);
+    return this.cartFacade?.productQuantity$(id);
   }
 
   removeFromCart(product: Product) {

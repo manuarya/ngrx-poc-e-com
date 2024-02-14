@@ -9,6 +9,7 @@ import {ProductsComponent} from "../../components/products/products.component";
 import {CartComponent} from "../../components/cart/cart.component";
 import {SexyModule} from "@qid/sexy";
 import {ProductModule} from "../../libs/product/product.module";
+import {CartModule} from "../../libs/cart/cart.module";
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import {ProductModule} from "../../libs/product/product.module";
     IonicModule,
     HomePageRoutingModule,
     SexyModule,
-    ProductModule
+    ProductModule,
+    CartModule
 
   ],
     declarations: [HomePage, ProductViewComponent, ProductsComponent, CartComponent]

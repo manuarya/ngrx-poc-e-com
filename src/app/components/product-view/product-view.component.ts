@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, inject, Input, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {Product} from "../../libs/product/api/product.model";
 import {ProductFacade} from "../../libs/product/product.facade";
 
@@ -8,13 +8,13 @@ import {ProductFacade} from "../../libs/product/product.facade";
   styleUrls: ['./product-view.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ProductViewComponent implements OnInit{
+export class ProductViewComponent implements OnChanges{
 
   @Input() product?: Product; // Receive product data as input
 
   private productFacade = inject(ProductFacade);
 
-  quantity$;
+  quantity$ ;
   constructor() {
   }
 
@@ -38,6 +38,12 @@ export class ProductViewComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.quantity$= this.productFacade?.getQuantity(this.product?.id)
+
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if(this.product){
+      this.quantity$= this.productFacade?.getQuantity(this.product?.id)
+    }
   }
 }

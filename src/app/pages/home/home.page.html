@@ -16,10 +16,10 @@
         <ion-buttons slot="end">
           <ion-icon name="cart"></ion-icon>
           <ion-text>
-            {{cartFascade?.totalProducts$ | async | number: '1.0-0'}}
+            {{cartFacade?.cartQuantity$ | async | number: '1.0-0'}}
           </ion-text>
           <ion-text >
-            ({{cartFascade?.totalPrice$ | async | currency: 'USD'}})
+            ({{cartFacade?.totalPrice$ | async | currency: 'USD'}})
           </ion-text>
         </ion-buttons>
       </ion-toolbar>

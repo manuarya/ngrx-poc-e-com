@@ -21,18 +21,18 @@
       <ion-col>
           <ion-card-title>{{ cartItem?.product?.name }}</ion-card-title>
           <p>Price: {{ cartItem?.product?.price | currency:'USD' }}</p>
-<!--          <p>Quantity: {{ cartItem?.quantity | number}}</p>-->
-<!--          <ion-button color="danger" (click)="onRemoveButtonClicked(cartItem?.product)">Remove</ion-button>-->
-
 
         <ion-buttons>
-          <ion-button color="primary" (click)="updateQuantity(cartItem,-1)">
+          <ion-button color="primary" (click)="onUpdateButtonClicked(cartItem,-1)">
             <ion-icon name="remove-outline"></ion-icon>
           </ion-button>
           <span>{{ cartItem?.quantity | number}}</span>
-          <ion-button color="primary" (click)="updateQuantity(cartItem,1)">
+          <ion-button color="primary" (click)="onUpdateButtonClicked(cartItem,1)">
             <ion-icon name="add-outline"></ion-icon>
           </ion-button>
+        </ion-buttons>
+        <ion-buttons>
+          <span>{{ cartItem?.total | currency:'USD'}}</span>
         </ion-buttons>
       </ion-col>
     </ion-row>
@@ -42,8 +42,11 @@
     <ion-card-header>
       <ion-card-title>Total Price:</ion-card-title>
     </ion-card-header>
-    <ion-card-content *ngIf="totalPrice$ | async as totalprice">
-      <p>{{ totalprice | currency:'USD' }}</p>
+    <ion-card-content >
+      <p>{{ totalPrice$ | async | currency:'USD' }}</p>
+    </ion-card-content>
+    <ion-card-content>
+      <p>{{ cartQuantity$ | async}}</p>
     </ion-card-content>
   </ion-card>
   <ion-buttons class="ion-justify-content-center">

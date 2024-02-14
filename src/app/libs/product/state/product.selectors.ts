@@ -9,7 +9,3 @@ export const selectAllProducts = createSelector(
   (state: any) => state.allProducts
 )
 
-export const selectIsLoaded = createSelector(
-  selectProductState,
-  (state: any) => state.isLoaded
-)

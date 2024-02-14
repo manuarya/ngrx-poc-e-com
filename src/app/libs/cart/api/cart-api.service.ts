@@ -2,78 +2,70 @@ import {Injectable} from '@angular/core';
 import {BehaviorSubject, map, Observable, of} from 'rxjs';
 import {Product} from "../../product/api/product.model";
 import {CartItem} from "./cart-item.model";
+import {Cart} from "./cart.model";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartApiService {
 
-  private cartItemsSubject: BehaviorSubject<CartItem[]> = new BehaviorSubject<CartItem[]>([]);
-  private cartItems: CartItem[] = [];
+  cartItems: CartItem[] = [];
 
-  constructor() {
-    this.cartItemsSubject.next(this.cartItems);
-  }
-
-  getCartItems(): Observable<CartItem[]> {
-    return this.cartItemsSubject.asObservable();
+  getCart() : Cart {
+    return {
+      cartItems: this.cartItems,
+      total: this.cartItems.reduce((acc, item) => acc + item.product.price * item.quantity, 0),
+      totalProducts: this.cartItems.reduce((acc, item) => acc + item.quantity, 0)
+    }
   }
 
   addToCart(product: Product, quantity: number): Observable<void> {
     const existingItem = this.cartItems.find(item => item?.product?.id === product.id);
+
+    // Create a copy of the existing cartItems array
+    const updatedCartItems = [...this.cartItems];
+
     if (existingItem) {
       existingItem.quantity += quantity;
+      existingItem.total = existingItem.product.price * existingItem.quantity;
     } else {
-      this.cartItems.push({product, quantity});
+      updatedCartItems.push({product: product, quantity: quantity, total: product.price * quantity});
     }
-    this.cartItemsSubject.next(this.cartItems);
+
+    this.cartItems = updatedCartItems;
     return of(undefined);
   }
 
   updateCartItemQuantity(product: Product, changeInQuantity: number): Observable<void> {
+
     const index = this.cartItems.findIndex(item => item?.product?.id === product?.id);
     if (index !== -1) {
-      this.cartItems[index].quantity += changeInQuantity;
-      if(this.cartItems[index].quantity <= 0) {
+      this.cartItems = this.cartItems.map((item, i) => i === index ? {
+        ...item,
+        quantity: item.quantity + changeInQuantity,
+        total: item.product.price * (item.quantity + changeInQuantity)
+      } : item);
+
+      if (this.cartItems[index].quantity <= 0) {
         this.removeFromCart(product?.id)
       }
     } else {
-      if(changeInQuantity > 0)
+      if (changeInQuantity > 0)
         this.addToCart(product, 1)
     }
-    this.cartItemsSubject.next(this.cartItems);
     return of(undefined);
   }
 
   removeFromCart(productId: number): Observable<void> {
-    const index = this.cartItems.findIndex(item => item?.product?.id === productId);
-    if (index !== -1) {
-      this.cartItems.splice(index, 1);
+    const updatedCartItems = this.cartItems.filter(item => item?.product?.id !== productId);
+
+    if (updatedCartItems.length < this.cartItems.length) {
+      this.cartItems = updatedCartItems;
     } else {
+      // Handle the case when the product is not found in the cart
       // throw new Error('Product not found in cart');
     }
-    this.cartItemsSubject.next(this.cartItems);
+
     return of(undefined);
-  }
-
-  getCartTotal(): Observable<number> {
-    return this.cartItemsSubject.pipe(
-      map(cartItems => cartItems.reduce((acc, item) => acc + item.product.price * item.quantity, 0) || 0)
-    );
-  }
-
-  getQuantityOfProductInCart(productId: number): Observable<number> {
-    return this.getCartItems().pipe(
-      map(cartItems => {
-        const cartItem = cartItems.find(item => item.product.id === productId);
-        return cartItem ? cartItem.quantity : 0;
-      })
-    );
-  }
-
-  getTotalProducts() {
-    return this.cartItemsSubject.pipe(
-      map(cartItems => cartItems.reduce((acc, item) => acc + item.quantity, 0) || 0)
-    );
   }
 }

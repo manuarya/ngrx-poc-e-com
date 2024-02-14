@@ -5,7 +5,9 @@ import {catchError, exhaustMap, map, of} from "rxjs";
 import {ProductApiService} from "../api/product-api.service";
 import {Product} from "../api/product.model";
 
-@Injectable()
+@Injectable(
+  {providedIn: 'root'}
+)
 export class ProductEffects{
 
   private actions$ = inject(Actions);
